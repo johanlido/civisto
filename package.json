@@ -1,0 +1,95 @@
+{
+  "name": "civisto",
+  "version": "1.0.0",
+  "description": "AI-Driven Civic Intelligence Platform - Empowering citizens through gamified community reporting",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "mobile",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:mobile": "cd mobile && npm run start",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd frontend && npm run test",
+    "test:backend": "cd backend && npm run test",
+    "lint": "npm run lint:frontend && npm run lint:backend",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "db:setup": "cd database && npm run setup",
+    "db:migrate": "cd database && npm run migrate",
+    "db:seed": "cd database && npm run seed",
+    "deploy": "npm run build && npm run deploy:frontend && npm run deploy:backend",
+    "deploy:frontend": "cd frontend && npm run deploy",
+    "deploy:backend": "cd backend && npm run deploy",
+    "install:all": "npm install && npm run install:frontend && npm run install:backend && npm run install:mobile",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    "install:mobile": "cd mobile && npm install"
+  },
+  "keywords": [
+    "civic-tech",
+    "ai",
+    "community",
+    "reporting",
+    "gamification",
+    "open-source",
+    "supabase",
+    "react",
+    "react-native"
+  ],
+  "author": {
+    "name": "Civisto Team",
+    "email": "hello@civisto.com",
+    "url": "https://civisto.com"
+  },
+  "contributors": [
+    {
+      "name": "Johan",
+      "email": "johan@civisto.com",
+      "role": "Co-Founder & CEO"
+    },
+    {
+      "name": "Daniel",
+      "email": "daniel@civisto.com",
+      "role": "Co-Founder & CTO"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johanlido/civisto.git"
+  },
+  "bugs": {
+    "url": "https://github.com/johanlido/civisto/issues"
+  },
+  "homepage": "https://civisto.com",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
+
