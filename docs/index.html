@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synaptic - AI Development Orchestrator</title>
+    <meta name="description" content="World's first AI personality-aware development orchestrator. Transform your development workflow with intelligent AI orchestration.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-bla    <!-- Navigation -->
+    <nav class="px-6 py-4 border-b border-gray-800 bg-black">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-green-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z"></path>
+                </svg>
+                <span class="text-xl font-bold text-white">Synaptic</span>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="text-gray-300 hover:text-white transition-colors" href="website/index.html">Documentation</a>
+                <a class="text-gray-300 hover:text-white transition-colors" href="website/personalities/index.html">AI Personalities</a>
+                <a class="text-gray-300 hover:text-white transition-colors" href="website/workflows/index.html">Workflows</a>
+                <a class="text-gray-300 hover:text-white transition-colors" href="website/setup/index.html">Setup Guide</a>
+                <a class="bg-gray-800 hover:bg-gray-700 border border-gray-600 text-white px-4 py-2 rounded-lg transition-colors" target="_blank" href="https://github.com/johanlido/Synaptic">GitHub</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button
+                    onclick="toggleMobileMenu()"
+                    class="text-gray-300 hover:text-white p-2"
+                    aria-label="Toggle mobile menu"
+                    id="mobile-menu-button"
+                >
+                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 hidden">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-black/95 backdrop-blur-sm border-b border-gray-800">
+            <div class="px-6 py-4 space-y-4">
+                <a href="website/index.html" class="block text-gray-300 hover:text-white transition-colors py-2">Documentation</a>
+                <a href="website/personalities/index.html" class="block text-gray-300 hover:text-white transition-colors py-2">AI Personalities</a>
+                <a href="website/workflows/index.html" class="block text-gray-300 hover:text-white transition-colors py-2">Workflows</a>
+                <a href="website/setup/index.html" class="block text-gray-300 hover:text-white transition-colors py-2">Setup Guide</a>
+                <a href="https://github.com/johanlido/Synaptic" class="block bg-gray-800 hover:bg-gray-700 border border-gray-600 text-white px-4 py-2 rounded-lg transition-colors text-center" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>-->
+    <div class="px-6 py-20">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="inline-flex items-center px-4 py-2 bg-gray-900 border border-gray-700 rounded-full text-gray-300 text-sm mb-8">
+                <span class="text-2xl mr-2">🧠</span>
+                World's First AI Personality-Aware Development Orchestrator
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                Intelligent AI
+                <span class="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Orchestration</span>
+                <br>for Developers
+            </h1>
+            
+            <p class="text-xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Transform your development workflow with AI personality intelligence. Based on empirical analysis of 4,442+ coding tasks, 
+                Synaptic automatically selects optimal AI models and applies personality-aware guardrails for superior code quality.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 inline-flex items-center" href="website/setup/index.html">
+                    Get Started in 15 Minutes
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+                    </svg>
+                </a>
+                <a class="border border-gray-600 hover:border-gray-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all hover:bg-gray-900" href="website/personalities/index.html">
+                    Explore AI Personalities
+                </a>
+            </div>
+            
+            <!-- Research Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-16">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-green-400 mb-2">4,442+</div>
+                    <div class="text-gray-400">Coding Tasks Analyzed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-400 mb-2">5</div>
+                    <div class="text-gray-400">AI Models Studied</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-purple-400 mb-2">50%</div>
+                    <div class="text-gray-400">Vulnerability Reduction</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-yellow-400 mb-2">10x</div>
+                    <div class="text-gray-400">Faster Prototyping</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Personalities Section -->
+    <div class="px-6 py-20 bg-gray-950">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">Five AI Coding Personalities</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Each AI model has distinct characteristics, strengths, and weaknesses. Synaptic leverages this research for intelligent orchestration.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Senior Architect -->
+                <div class="bg-gray-900 border-2 border-blue-500/30 rounded-xl p-6 hover:border-blue-500 transition-all hover:scale-105">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3">🏗️</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Senior Architect</h3>
+                            <p class="text-blue-400 text-sm">Claude Sonnet 4</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">Complex, comprehensive enterprise solutions with verbosity control</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Performance:</span>
+                            <span class="text-green-400 font-semibold">95.57% HumanEval</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Verbosity:</span>
+                            <span class="text-orange-400 font-semibold">High (370K LOC)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rapid Prototyper -->
+                <div class="bg-gray-900 border-2 border-green-500/30 rounded-xl p-6 hover:border-green-500 transition-all hover:scale-105">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3">⚡</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Rapid Prototyper</h3>
+                            <p class="text-green-400 text-sm">GPT-4o</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">Quick, balanced development and iteration</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Performance:</span>
+                            <span class="text-green-400 font-semibold">73.42% HumanEval</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Verbosity:</span>
+                            <span class="text-yellow-400 font-semibold">Medium (209K LOC)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Efficient Generalist -->
+                <div class="bg-gray-900 border-2 border-orange-500/30 rounded-xl p-6 hover:border-orange-500 transition-all hover:scale-105">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3">🔧</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Efficient Generalist</h3>
+                            <p class="text-orange-400 text-sm">OpenCoder-8B</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">Minimal, optimized code for performance</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Performance:</span>
+                            <span class="text-green-400 font-semibold">64.36% HumanEval</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Verbosity:</span>
+                            <span class="text-green-400 font-semibold">Low (120K LOC)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documentation Expert -->
+                <div class="bg-gray-900 border-2 border-purple-500/30 rounded-xl p-6 hover:border-purple-500 transition-all hover:scale-105">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3">📚</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Documentation Expert</h3>
+                            <p class="text-purple-400 text-sm">Claude 3.7 Sonnet</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">Well-documented, stable solutions</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Performance:</span>
+                            <span class="text-green-400 font-semibold">84.28% HumanEval</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Documentation:</span>
+                            <span class="text-green-400 font-semibold">High (16.4%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adaptive Orchestrator -->
+                <div class="bg-gray-900 border-2 border-indigo-500/30 rounded-xl p-6 hover:border-indigo-500 transition-all hover:scale-105 md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl mr-3">🧠</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Adaptive Orchestrator</h3>
+                            <p class="text-indigo-400 text-sm">Intelligent Selection</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">Task-based intelligent model selection</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Performance:</span>
+                            <span class="text-green-400 font-semibold">Optimal per task</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Intelligence:</span>
+                            <span class="text-indigo-400 font-semibold">Adaptive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 inline-flex items-center" href="website/personalities/index.html">
+                    <span class="text-xl mr-2">🧠</span>
+                    Explore All AI Personalities
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="px-6 py-20 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">Everything You Need for AI-Assisted Development</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">A complete ecosystem of AI tools working together seamlessly with personality-aware intelligence</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:border-green-500/50 transition-colors">
+                    <div class="bg-green-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-green-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">AI Personality Intelligence</h3>
+                    <p class="text-gray-400 mb-4">Intelligent model selection and personality-aware guardrails based on empirical research.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 text-green-400 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            Task-based model selection
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 text-green-400 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            Vulnerability-aware guardrails
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 text-green-400 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            Quality assurance pipeline
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:border-blue-500/50 transition-colors">
+                    <div class="bg-blue-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-blue-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Enterprise Security</h3>
+                    <p class="text-gray-400 mb-4">Built-in security best practices, API key management, and compliance-ready configurations.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 text-green-400 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            Secure API key management
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 text-green-400 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            50% vulnerability reduction
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 text-green-400 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            Security audit logging
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:border-yellow-500/50 transition-colors">
+                    <div class="bg-yellow-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-yellow-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Zero Configuration</h3>
+                    <p class="text-gray-400 mb-4">Interactive setup wizard with platform detection and automated configuration for all environments.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 text-green-400 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            Interactive setup wizard
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 text-green-400 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            AI personality selection
+                        </li>
+                        <li class="flex items-center text-sm text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 text-green-400 mr-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            Health checks & validation
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="px-6 py-20 bg-gray-950">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform Your Development Workflow?</h2>
+            <p class="text-xl text-gray-400 mb-8">Experience the future of AI-assisted development with scientific precision and personality-aware intelligence.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105" href="website/setup/index.html">
+                    Get Started Now
+                </a>
+                <a class="border border-gray-600 hover:border-gray-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all hover:bg-gray-900" href="https://github.com/johanlido/Synaptic" target="_blank">
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobile-menu');
+                const menuIcon = document.getElementById('menu-icon');
+                const closeIcon = document.getElementById('close-icon');
+                
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.feature').forEach(feature => {
+            feature.addEventListener('mouseenter', () => {
+                feature.style.transform = 'translateY(-5px)';
+                feature.style.boxShadow = '0 10px 25px rgba(16, 185, 129, 0.2)';
+            });
+            feature.addEventListener('mouseleave', () => {
+                feature.style.transform = 'translateY(0)';
+                feature.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+

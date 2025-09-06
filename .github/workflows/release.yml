@@ -1,0 +1,227 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v2.1.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  validate-release:
+    name: Validate Release
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate version format
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${{ github.ref_name }}"
+          fi
+          
+          if [[ ! "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: Version must follow semantic versioning (e.g., v2.1.0)"
+            exit 1
+          fi
+          
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Check changelog entry
+        run: |
+          if ! grep -q "${{ env.VERSION }}" CHANGELOG.md; then
+            echo "Error: No changelog entry found for ${{ env.VERSION }}"
+            echo "Please update CHANGELOG.md with release notes"
+            exit 1
+          fi
+
+      - name: Validate template structure
+        run: |
+          echo "Validating template structure..."
+          required_files=(
+            "README.md"
+            "CHANGELOG.md"
+            "TEMPLATE_CUSTOMIZATION.md"
+            ".env.example"
+            "scripts/setup.sh"
+            "scripts/interactive-setup.sh"
+            "configs/ai-personalities.yml"
+            ".github/copilot-instructions.md"
+          )
+          
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "Error: Required file missing: $file"
+              exit 1
+            fi
+          done
+
+  build-and-test:
+    name: Build and Test
+    runs-on: ${{ matrix.os }}
+    needs: validate-release
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Test setup scripts
+        run: |
+          bash -n scripts/setup.sh
+          bash -n scripts/interactive-setup.sh
+          bash -n scripts/install-mcp-servers.sh
+          bash -n scripts/configure-claude.sh
+
+      - name: Build documentation website
+        run: |
+          cd docs/website
+          npm ci
+          npm run build
+
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [validate-release, build-and-test]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${{ github.ref_name }}"
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Extract changelog
+        run: |
+          # Extract changelog section for this version
+          awk "/^## \[${{ env.VERSION }}\]/{flag=1; next} /^## \[/{flag=0} flag" CHANGELOG.md > release_notes.md
+          
+          if [ ! -s release_notes.md ]; then
+            echo "No release notes found for ${{ env.VERSION }}"
+            echo "## Changes" > release_notes.md
+            echo "See [CHANGELOG.md](CHANGELOG.md) for details." >> release_notes.md
+          fi
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: Synaptic ${{ env.VERSION }}
+          body_path: release_notes.md
+          draft: false
+          prerelease: false
+
+  deploy-docs:
+    name: Deploy Documentation
+    runs-on: ubuntu-latest
+    needs: create-release
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'docs/website/package-lock.json'
+
+      - name: Install dependencies
+        run: |
+          cd docs/website
+          npm ci
+
+      - name: Build website
+        run: |
+          cd docs/website
+          npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/website/out'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  notify-release:
+    name: Notify Release
+    runs-on: ubuntu-latest
+    needs: [create-release, deploy-docs]
+    if: always()
+    
+    steps:
+      - name: Get version
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${{ github.ref_name }}"
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Create release summary
+        run: |
+          echo "## 🚀 Synaptic ${{ env.VERSION }} Released!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📋 Release Information" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version**: ${{ env.VERSION }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Release Date**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+          echo "- **GitHub Release**: [View Release](https://github.com/${{ github.repository }}/releases/tag/${{ env.VERSION }})" >> $GITHUB_STEP_SUMMARY
+          echo "- **Documentation**: [View Docs](https://johanlido.github.io/Synaptic/)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🎯 Template Usage" >> $GITHUB_STEP_SUMMARY
+          echo "- **Use Template**: [Create from Template](https://github.com/${{ github.repository }}/generate)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Fork Repository**: [Fork on GitHub](https://github.com/${{ github.repository }}/fork)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📚 Quick Start" >> $GITHUB_STEP_SUMMARY
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo 'git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git' >> $GITHUB_STEP_SUMMARY
+          echo 'cd YOUR_REPO_NAME' >> $GITHUB_STEP_SUMMARY
+          echo 'chmod +x scripts/interactive-setup.sh' >> $GITHUB_STEP_SUMMARY
+          echo './scripts/interactive-setup.sh' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+

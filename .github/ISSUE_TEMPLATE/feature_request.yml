@@ -1,0 +1,190 @@
+name: 💡 Feature Request
+description: Suggest a new feature or enhancement for Synaptic
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide detailed information to help us understand your request.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify these items before submitting
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have reviewed the roadmap and documentation
+          required: true
+        - label: This feature aligns with Synaptic's goals as an AI development orchestrator
+          required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - MCP Server Integration
+        - AI Orchestrator Enhancement
+        - Setup/Installation Improvement
+        - Documentation Enhancement
+        - Security Feature
+        - Developer Experience
+        - Performance Optimization
+        - Platform Support
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: |
+        Describe the problem or limitation you're experiencing...
+        
+        Example: "As a developer using multiple AI models, I need a way to automatically switch between models based on the type of code I'm writing, so that I can get optimal results for different programming tasks."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How should this feature work?
+      placeholder: |
+        Describe your proposed solution in detail...
+        
+        Include:
+        - How it should work
+        - User interface/experience
+        - Integration points
+        - Configuration options
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other solutions have you considered?
+      placeholder: |
+        Describe alternative approaches you've considered...
+        
+        Why is your proposed solution better than these alternatives?
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: Provide specific use cases and scenarios
+      placeholder: |
+        1. **Use Case 1**: Frontend Development
+           - When: Working on React components
+           - Need: AI model optimized for UI/UX code
+           - Benefit: Better component suggestions and styling
+
+        2. **Use Case 2**: Backend Development
+           - When: Writing API endpoints
+           - Need: AI model focused on security and performance
+           - Benefit: More secure and efficient backend code
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would improve workflow
+        - High - Significantly impacts productivity
+        - Critical - Blocking current work
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you think this feature would be to implement?
+      options:
+        - Simple - Configuration or documentation change
+        - Medium - New script or minor feature
+        - Complex - Significant new functionality
+        - Major - Requires architectural changes
+        - Unknown
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Ideas
+      description: Do you have ideas about how this could be implemented?
+      placeholder: |
+        If you have technical ideas about implementation, share them here...
+        
+        - Code snippets
+        - Architecture suggestions
+        - Dependencies or tools needed
+        - Integration approaches
+
+  - type: checkboxes
+    id: ai-models
+    attributes:
+      label: AI Model Relevance
+      description: Which AI models would this feature affect?
+      options:
+        - label: Claude 3.5 Sonnet
+        - label: GPT-4o
+        - label: o1-preview/o1-mini
+        - label: OpenCoder-8B
+        - label: All AI models
+        - label: Not AI model specific
+
+  - type: checkboxes
+    id: platforms
+    attributes:
+      label: Platform Support
+      description: Which platforms should this feature support?
+      options:
+        - label: macOS
+        - label: Linux
+        - label: Windows/WSL
+        - label: All platforms
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups or Examples
+      description: Visual examples, mockups, or code examples
+      placeholder: |
+        If applicable, provide:
+        - Screenshots or mockups
+        - Code examples
+        - Configuration examples
+        - Command-line examples
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other context or information
+      placeholder: |
+        Add any other context, links to related projects, research, or relevant information...
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution Interest
+      description: Are you interested in contributing to this feature?
+      options:
+        - label: I would like to implement this feature myself
+        - label: I can help with testing and feedback
+        - label: I can help with documentation
+        - label: I can provide domain expertise
+

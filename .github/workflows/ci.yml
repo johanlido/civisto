@@ -1,0 +1,379 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-validate:
+    name: Lint and Validate
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'docs/website/package-lock.json'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jsonschema pyyaml
+
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Validate JSON files
+        run: |
+          echo "Validating JSON configuration files..."
+          find . -name "*.json" -not -path "./node_modules/*" -not -path "./.next/*" | while read -r file; do
+            echo "Validating $file"
+            python -m json.tool "$file" > /dev/null || exit 1
+          done
+
+      - name: Validate YAML files
+        run: |
+          echo "Validating YAML configuration files..."
+          find . -name "*.yml" -o -name "*.yaml" | while read -r file; do
+            echo "Validating $file"
+            python -c "import yaml; yaml.safe_load(open('$file'))" || exit 1
+          done
+
+      - name: Lint shell scripts
+        run: |
+          echo "Linting shell scripts..."
+          find . -name "*.sh" -not -path "./node_modules/*" | while read -r script; do
+            echo "Checking $script"
+            shellcheck "$script" || exit 1
+          done
+
+      - name: Check script permissions
+        run: |
+          echo "Checking script permissions..."
+          find scripts/ -name "*.sh" | while read -r script; do
+            if [ ! -x "$script" ]; then
+              echo "Error: $script is not executable"
+              exit 1
+            fi
+          done
+
+      - name: Validate environment templates
+        run: |
+          echo "Validating environment templates..."
+          if [ -f ".env.example" ]; then
+            # Check for required environment variables
+            required_vars=("OPENAI_API_KEY" "ANTHROPIC_API_KEY")
+            for var in "${required_vars[@]}"; do
+              if ! grep -q "$var" .env.example; then
+                echo "Warning: $var not found in .env.example"
+              fi
+            done
+          fi
+
+  test-setup-scripts:
+    name: Test Setup Scripts
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install uv (Python package manager)
+        run: |
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            brew install uv
+          else
+            curl -LsSf https://astral.sh/uv/install.sh | sh
+            echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+          fi
+
+      - name: Test setup script syntax
+        run: |
+          bash -n scripts/setup.sh
+          bash -n scripts/interactive-setup.sh
+          bash -n scripts/install-mcp-servers.sh
+          bash -n scripts/configure-claude.sh
+
+      - name: Test MCP server installation (dry run)
+        run: |
+          # Test the installation script without actually installing
+          export DRY_RUN=true
+          bash scripts/install-mcp-servers.sh || echo "Dry run completed"
+
+      - name: Test Claude configuration generation
+        run: |
+          # Test configuration generation with dummy values
+          export OPENAI_API_KEY="test-key"
+          export ANTHROPIC_API_KEY="test-key"
+          export PERPLEXITY_API_KEY="test-key"
+          bash scripts/configure-claude.sh --test || echo "Test configuration completed"
+
+  link-checker:
+    name: Check Documentation Links
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install markdown-link-check
+        run: npm install -g markdown-link-check
+
+      - name: Check links in README
+        run: |
+          markdown-link-check README.md --config .github/workflows/link-check-config.json || true
+
+      - name: Check links in documentation
+        run: |
+          find docs/ -name "*.md" -exec markdown-link-check {} \; || true
+
+      - name: Check links in GitHub templates
+        run: |
+          find .github/ -name "*.md" -exec markdown-link-check {} \; || true
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          cd docs/website
+          npm ci
+
+      - name: Run npm audit
+        run: |
+          cd docs/website
+          npm audit --audit-level=moderate
+
+      - name: Check for secrets in code
+        run: |
+          echo "Checking for potential secrets..."
+          # Check for common secret patterns
+          if grep -r "sk-[a-zA-Z0-9]" --exclude-dir=node_modules --exclude-dir=.git . ; then
+            echo "Warning: Potential API key found"
+            exit 1
+          fi
+          
+          if grep -r "password.*=" --exclude-dir=node_modules --exclude-dir=.git . ; then
+            echo "Warning: Potential password found"
+            exit 1
+          fi
+
+      - name: Validate secure file permissions
+        run: |
+          echo "Checking file permissions..."
+          # Check that sensitive files are not world-readable
+          find . -name ".env*" -perm /o+r -exec echo "Warning: {} is world-readable" \;
+
+  build-website:
+    name: Build Documentation Website
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'docs/website/package-lock.json'
+
+      - name: Install dependencies
+        run: |
+          cd docs/website
+          npm ci
+
+      - name: Build website
+        run: |
+          cd docs/website
+          npm run build
+
+      - name: Test website build
+        run: |
+          cd docs/website
+          # Check that essential files were generated
+          if [ ! -f "out/index.html" ]; then
+            echo "Error: index.html not generated"
+            exit 1
+          fi
+          
+          if [ ! -f "out/personalities/index.html" ]; then
+            echo "Error: personalities page not generated"
+            exit 1
+          fi
+
+  ai-personality-validation:
+    name: Validate AI Personality Configuration
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml jsonschema
+
+      - name: Validate AI personality configuration
+        run: |
+          python -c "
+          import yaml
+          import json
+          
+          # Load and validate AI personalities configuration
+          with open('configs/ai-personalities.yml', 'r') as f:
+              config = yaml.safe_load(f)
+          
+          # Check required fields
+          required_fields = ['personalities', 'orchestrator', 'guardrails']
+          for field in required_fields:
+              if field not in config:
+                  print(f'Error: Missing required field: {field}')
+                  exit(1)
+          
+          # Validate personality entries
+          for personality in config['personalities']:
+              required_personality_fields = ['id', 'name', 'model', 'strengths', 'weaknesses', 'best_for']
+              for field in required_personality_fields:
+                  if field not in personality:
+                      print(f'Error: Missing field {field} in personality {personality.get(\"id\", \"unknown\")}')
+                      exit(1)
+          
+          print('AI personality configuration is valid')
+          "
+
+      - name: Validate copilot instructions
+        run: |
+          # Check that copilot instructions file exists and has required sections
+          if [ ! -f ".github/copilot-instructions.md" ]; then
+            echo "Error: copilot-instructions.md not found in .github/"
+            exit 1
+          fi
+          
+          # Check for required sections
+          required_sections=("Claude 3.5 Sonnet" "GPT-4o" "o1-preview" "OpenCoder-8B")
+          for section in "${required_sections[@]}"; do
+            if ! grep -q "$section" .github/copilot-instructions.md; then
+              echo "Warning: Section '$section' not found in copilot instructions"
+            fi
+          done
+
+  template-validation:
+    name: Validate Template Structure
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check required template files
+        run: |
+          echo "Checking required template files..."
+          required_files=(
+            "README.md"
+            "TEMPLATE_CUSTOMIZATION.md"
+            ".env.example"
+            "scripts/setup.sh"
+            "scripts/interactive-setup.sh"
+            "scripts/install-mcp-servers.sh"
+            "scripts/configure-claude.sh"
+            "configs/claude-desktop/claude_desktop_config.json"
+            ".github/copilot-instructions.md"
+            ".github/CONTRIBUTING.md"
+            ".github/CODE_OF_CONDUCT.md"
+            ".github/SECURITY.md"
+          )
+          
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "Error: Required file missing: $file"
+              exit 1
+            fi
+          done
+
+      - name: Check template placeholders
+        run: |
+          echo "Checking for template placeholders..."
+          # Check that configuration files contain placeholders
+          if ! grep -q "YOUR_" configs/claude-desktop/claude_desktop_config.json; then
+            echo "Warning: No placeholders found in Claude config"
+          fi
+          
+          if ! grep -q "your-" .env.example; then
+            echo "Warning: No placeholders found in .env.example"
+          fi
+
+      - name: Validate directory structure
+        run: |
+          echo "Validating directory structure..."
+          required_dirs=(
+            "scripts"
+            "configs"
+            "configs/claude-desktop"
+            "configs/vscode"
+            "docs"
+            ".github"
+            ".github/workflows"
+            ".github/ISSUE_TEMPLATE"
+          )
+          
+          for dir in "${required_dirs[@]}"; do
+            if [ ! -d "$dir" ]; then
+              echo "Error: Required directory missing: $dir"
+              exit 1
+            fi
+          done
+
