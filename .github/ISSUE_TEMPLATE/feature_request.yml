@@ -1,0 +1,148 @@
+name: 💡 Feature Request
+description: Suggest a new feature or improvement for Civisto
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! 💡
+        
+        Your ideas help make Civisto better for everyone. Please provide as much detail as possible.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What's the current pain point?
+      placeholder: "As a [user type], I'm frustrated when [situation] because [reason]..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your ideal solution to this problem
+      placeholder: "I would like to be able to [action] so that [benefit]..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which part of Civisto would this feature affect?
+      options:
+        - Backend API
+        - Database Schema
+        - Edge Functions
+        - Authentication
+        - Gamification System
+        - AI Analysis
+        - Municipality Integration
+        - Mobile App
+        - Web Frontend
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user_type
+    attributes:
+      label: Primary User Type
+      description: Who would primarily benefit from this feature?
+      options:
+        - Citizens/Reporters
+        - Municipality Officials
+        - Community Moderators
+        - Developers
+        - All Users
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Nice to have - Would be cool but not essential
+        - Important - Would significantly improve my experience
+        - Critical - Blocking my ability to use Civisto effectively
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative solutions or workarounds?
+      placeholder: "Alternatively, we could [alternative approach]..."
+
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: Use Cases
+      description: Provide specific examples of how this feature would be used
+      placeholder: |
+        1. When [scenario], users would [action]
+        2. In the case of [situation], this would help by [benefit]
+        3. For [user type], this enables [capability]
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups or Examples
+      description: If you have mockups, wireframes, or examples from other apps, please share them
+
+  - type: textarea
+    id: technical_considerations
+    attributes:
+      label: Technical Considerations
+      description: Any technical aspects, constraints, or implementation ideas you'd like to share
+
+  - type: dropdown
+    id: civic_impact
+    attributes:
+      label: Civic Impact
+      description: How would this feature improve civic engagement?
+      options:
+        - Increases citizen participation
+        - Improves government transparency
+        - Enhances community building
+        - Streamlines municipal processes
+        - Promotes social justice
+        - Other civic benefit
+        - Not directly civic-related
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: implementation
+    attributes:
+      label: Implementation Willingness
+      description: Are you interested in helping implement this feature?
+      options:
+        - label: I'm willing to help design this feature
+        - label: I'm willing to help implement this feature
+        - label: I'm willing to help test this feature
+        - label: I'm willing to help document this feature
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: This feature aligns with Civisto's mission of civic engagement
+          required: true
+        - label: I have provided sufficient detail for the development team
+          required: true
+
