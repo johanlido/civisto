@@ -1,0 +1,49 @@
+{
+  "name": "civisto-backend-api",
+  "version": "1.0.0",
+  "description": "Civisto Backend API - Supabase configuration and edge functions",
+  "main": "index.js",
+  "scripts": {
+    "dev": "supabase start",
+    "build": "supabase functions build",
+    "deploy": "supabase db push && supabase functions deploy",
+    "test": "jest",
+    "lint": "eslint . --ext .ts,.js",
+    "db:reset": "supabase db reset",
+    "db:migrate": "supabase migration up", 
+    "db:seed": "supabase seed run",
+    "functions:serve": "supabase functions serve",
+    "functions:deploy": "supabase functions deploy",
+    "functions:logs": "supabase functions logs",
+    "studio": "supabase studio",
+    "status": "supabase status",
+    "stop": "supabase stop"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.10.5",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "supabase": "^1.123.4",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "supabase",
+    "backend",
+    "civic-tech",
+    "api",
+    "postgresql",
+    "edge-functions",
+    "deno"
+  ],
+  "author": "Civisto Team",
+  "license": "MIT"
+}
+

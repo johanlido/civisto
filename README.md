@@ -1,334 +1,364 @@
-# Synaptic - AI Development Orchestrator Template
+# Civisto Backend - AI-Driven Civic Intelligence Platform
 
-[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge)](https://github.com/johanlido/Synaptic/generate)
-[![Fork this repo](https://img.shields.io/badge/Fork%20this%20repo-blue?style=for-the-badge)](https://github.com/johanlido/Synaptic/fork)
-[![GitHub Pages](https://img.shields.io/badge/Documentation-GitHub%20Pages-brightgreen?style=for-the-badge)](https://johanlido.github.io/Synaptic/)
-[![CI/CD](https://img.shields.io/github/actions/workflow/status/johanlido/Synaptic/ci.yml?style=for-the-badge&label=CI%2FCD)](https://github.com/johanlido/Synaptic/actions)
+🏛️ **Empowering citizens through AI-powered community reporting** 🤖
 
-Transform your development workflow with **intelligent AI orchestration** that delivers **10x faster prototyping** while maintaining enterprise-grade security. Synaptic integrates Claude Desktop, GitHub Copilot, and specialized MCP servers with **AI personality-aware guardrails** based on empirical analysis of 4,442+ coding tasks.
+[![Open Source](https://img.shields.io/badge/Open%20Source-❤️-red?style=for-the-badge)](https://github.com/johanlido/civisto)
+[![AI Powered](https://img.shields.io/badge/AI%20Powered-🧠-blue?style=for-the-badge)](https://synaptic.civisto.com)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
 
-**🧠 NEW: AI Personality Intelligence** | **🚀 Quick Start**: 15 minutes | **🔧 Enterprise Ready** | **🔒 Security First**
+## 🌟 Vision: From Everyday Citizens to Everyday Heroes
 
-> **🎯 This is a template repository!** Click "Use this template" above to create your own copy, or fork it to contribute improvements.
+Civisto transforms civic engagement into a meaningful, gamified experience where every citizen can become a hero in their community. Like Pokemon Go for social impact - discover real problems, report them, and watch your community improve while earning recognition and building connections.
 
-## 📋 Template Quick Start
+This repository contains the **backend implementation** - a complete Supabase-powered API with PostgreSQL database, AI analysis, gamification system, and municipal integration.
 
-### Using This Template
+### 🎯 Core Mission
+- **Create Meaning**: Transform observations into impactful actions
+- **Build Community**: Connect citizens through shared purpose  
+- **Empower Heroes**: Turn everyday people into community champions
+- **Drive Change**: Use AI to amplify citizen voices and create real solutions
 
-1. **Click "Use this template"** above or [create from template](https://github.com/johanlido/Synaptic/generate)
-2. **Name your repository** and choose visibility settings
-3. **Clone your new repository**:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   cd YOUR_REPO_NAME
-   ```
-4. **Run the interactive setup**:
-   ```bash
-   chmod +x scripts/interactive-setup.sh
-   ./scripts/interactive-setup.sh
-   ```
-5. **Customize for your project** using the [Template Customization Guide](TEMPLATE_CUSTOMIZATION.md)
+## 🚀 Backend Features
 
-### Template Features
+### 🗄️ Database & API
+- **PostgreSQL with PostGIS** for geospatial data
+- **Row Level Security** for data protection
+- **Real-time subscriptions** for live updates
+- **RESTful API** with comprehensive endpoints
+- **Comprehensive seed data** for testing
 
-✅ **Complete AI Development Environment**  
-✅ **GitHub Actions CI/CD Pipeline**  
-✅ **Community Health Files** (Contributing, Code of Conduct, Security)  
-✅ **Issue & PR Templates**  
-✅ **Documentation Website** (GitHub Pages ready)  
-✅ **Cross-Platform Setup Scripts** (macOS, Linux, Windows/WSL)  
-✅ **Security Best Practices** built-in  
-✅ **AI Personality System** with intelligent orchestration  
+### 🤖 AI-Powered Intelligence
+- **Smart Categorization**: Automatic problem classification
+- **Priority Assessment**: AI-driven urgency evaluation
+- **Sentiment Analysis**: Emotional tone detection
+- **Contextual Insights**: Municipality-specific suggestions
+- **Keyword Extraction**: Enhanced searchability
 
-## 🌟 Revolutionary AI Personality System
+### 🎮 Gamification System
+- **Quest System**: Daily, weekly, and milestone challenges
+- **Badge System**: Achievement recognition
+- **Point System**: Progressive rewards
+- **Leaderboards**: Community competition
+- **Level Progression**: User advancement tracking
 
-**World's First AI Development Orchestrator** with personality-aware intelligence:
+### 🏛️ Municipal Integration
+- **Email Notifications**: Formatted reports to authorities
+- **API Integration**: Direct system connections
+- **Webhook Support**: Real-time municipal updates
+- **Multi-channel Delivery**: Flexible notification options
+- **Swedish Municipality Support**: Pre-configured for major cities
 
-- **🏗️ Senior Architect** (Claude 3.5 Sonnet) - Complex enterprise solutions with verbosity control
-- **⚡ Rapid Prototyper** (GPT-4o) - Balanced development with control flow validation  
-- **🔧 Efficient Generalist** (OpenCoder-8B) - Minimal code with dead code prevention
-- **📚 Documentation Expert** (Claude 3.5 Haiku) - High-quality docs with modern patterns
-- **🧠 Adaptive Orchestrator** - Intelligent task-based model selection
-
-**Based on Scientific Research**: Empirical analysis of LLM coding behaviors reveals distinct personalities with measurable strengths and weaknesses. Synaptic compensates for each model's specific vulnerabilities while leveraging their unique capabilities.
-
-## ⚡ Immediate Benefits
-
-- **Reduce design-to-code time by 50-80%** with Figma-to-React automation
-- **21% faster task completion** through AI-assisted development workflows  
-- **50% reduction in security vulnerabilities** through personality-aware guardrails
-- **Eliminate context switching** between 6+ development tools
-- **Enterprise-grade security** with comprehensive API key management
-- **Zero-configuration setup** with automated installation scripts
-
-## 🎯 Overview
-
-This repository provides a **production-ready template** for implementing the AI development environment described in the "Professional AI Development Environment Setup Guide" blog post series. synaptic represents the culmination of months of real-world development experience, refined through building everything from civic engagement platforms to enterprise applications.
-
-**What makes synaptic special?** Traditional development environments force you to choose between power and simplicity. synaptic eliminates that trade-off entirely by creating an orchestrated AI ecosystem where each component excels in its specific domain while contributing to a unified development experience.
-
-### 🌟 **Key Benefits**
-
-- **10x Productivity Gain**: Prototype, iterate, and deploy faster than traditional development workflows
-- **Strategic Amplification**: AI handles routine implementation while you focus on architecture and business logic  
-- **Professional Grade**: Enterprise-ready with security, monitoring, and team collaboration features
-- **Zero Configuration**: Complete setup in minutes with automated scripts and comprehensive documentation
-- **Modular Design**: Enable only the AI services you need, customize for your team's specific requirements
-
-### 🏢 **Perfect For**
-
-- **Tech Leaders** who need hands-on understanding of AI-assisted development to guide strategy
-- **Development Teams** looking to implement standardized AI workflows across projects
-- **Individual Developers** wanting to leverage cutting-edge AI tools professionally
-- **Organizations** seeking to accelerate development velocity while maintaining code quality
-- **Consultants** who need rapid prototyping and client demonstration capabilities
-
-This isn't just another tutorial - it's the **blueprint for the future of professional software development**, where AI amplifies human creativity rather than replacing strategic thinking.
-
-## 💻 System Requirements
-
-| Component | macOS | Windows | Linux |
-|-----------|-------|---------|-------|
-| **Minimum RAM** | 8GB | 8GB | 8GB |
-| **Recommended RAM** | 16GB+ | 16GB+ | 16GB+ |
-| **Storage** | 5GB free | 5GB free | 5GB free |
-| **Claude Desktop** | ✅ Native | ✅ Native | ⚠️ Web only |
-| **MCP Servers** | ✅ Full support | ✅ Full support | ✅ Full support |
-
-### 📋 Pre-Installation Checklist
-
-- [ ] **API Keys ready**: Claude, Perplexity, GitHub (optional: Figma)
-- [ ] **Development tools installed**: Node.js 18+, Python 3.9+, Git
-- [ ] **VSCode** with GitHub Copilot extension
-- [ ] **30 minutes available** for setup process
-- [ ] **Stable internet connection** (500MB+ downloads)
+### 🌐 Multi-Platform Reporting
+- **Physical Issues**: Roads, parks, safety, accessibility
+- **Digital Harassment**: Social media hate, cyberbullying
+- **Community Problems**: Noise, waste, local concerns
+- **Geospatial Queries**: Location-based problem discovery
 
 ## 🏗️ Architecture
 
-The environment consists of four integrated layers:
+```
+civisto/
+├── backend/                    # Supabase backend
+│   ├── supabase/
+│   │   ├── functions/         # Edge Functions (Deno/TypeScript)
+│   │   │   ├── analyze-report/    # AI analysis
+│   │   │   ├── gamification/      # Quest & badge system
+│   │   │   └── notify-municipality/ # Municipal notifications
+│   │   ├── migrations/        # Database schema
+│   │   ├── config.toml       # Supabase configuration
+│   │   └── seed.sql          # Sample data
+│   └── package.json
+├── docs/                      # Documentation
+│   ├── api.md                # API documentation
+│   ├── deployment.md         # Deployment guide
+│   └── getting-started.md    # Setup instructions
+└── README.md                 # This file
+```
 
-- **Foundation Layer**: VSCode + GitHub Copilot for real-time coding assistance
-- **Orchestration Layer**: Claude Desktop with MCP server coordination
-- **Intelligence Layer**: Specialized MCP servers for different domains
-- **Integration Layer**: Design-to-development workflow bridges
+## 🛠️ Tech Stack
 
-### Included MCP Servers
+- **Database**: PostgreSQL 15 + PostGIS
+- **Backend**: Supabase (Auth + Storage + Edge Functions)
+- **Runtime**: Deno (Edge Functions)
+- **Language**: TypeScript
+- **AI**: OpenAI GPT-4 integration
+- **Deployment**: Supabase Cloud
+- **CI/CD**: GitHub Actions
 
-- **Perplexity MCP**: Real-time web research and documentation
-- **Manus MCP**: Web browsing, code execution, and shell commands
-- **Figma MCP**: Design-to-development workflow integration
+## 🚀 Quick Start
 
-## 🚀 Getting Started
+### Prerequisites
+- Node.js 18+
+- Supabase CLI
+- Git
 
-### Step 1: Create Your Own Repository
+### Installation
 
-**Option A: Use as Template (Recommended)**
-1. Click the "Use this template" button above
-2. Create a new repository in your GitHub account
-3. Clone your new repository locally
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/johanlido/civisto.git
+   cd civisto
+   ```
 
-**Option B: Fork the Repository**
-1. Click the "Fork" button above
-2. Clone your forked repository locally
+2. **Install dependencies**
+   ```bash
+   npm install
+   cd backend && npm install
+   ```
 
-### Step 2: Quick Setup
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your configuration
+   ```
 
-**Interactive Setup (Recommended)**
+4. **Start Supabase locally**
+   ```bash
+   cd backend
+   supabase start
+   ```
+
+5. **Apply database schema**
+   ```bash
+   supabase db reset
+   ```
+
+6. **Deploy Edge Functions**
+   ```bash
+   supabase functions deploy
+   ```
+
+Visit:
+- **API**: http://localhost:54321
+- **Supabase Studio**: http://localhost:54323
+
+## 📖 API Documentation
+
+### Core Endpoints
+
+#### Reports
 ```bash
-# Navigate to your cloned repository
-cd your-synaptic-repo
+# Create report
+POST /rest/v1/reports
+{
+  "title": "Broken Swing at Central Park",
+  "description": "Safety hazard for children",
+  "category": "parks_green_areas",
+  "location": "POINT(18.0686 59.3293)"
+}
 
-# Run the interactive setup wizard
-./scripts/interactive-setup.sh
+# Get reports
+GET /rest/v1/reports?select=*&order=created_at.desc
+
+# Get nearby reports
+POST /rest/v1/rpc/get_nearby_reports
+{
+  "center_lat": 59.3293,
+  "center_lng": 18.0686,
+  "radius_meters": 1000
+}
 ```
 
-The interactive setup will:
-- ✅ Validate prerequisites
-- ✅ Let you choose which MCP servers to install
-- ✅ Configure environment variables
-- ✅ Set up Claude Desktop integration
-- ✅ Run health checks
-
-**Manual Setup (Advanced Users)**
+#### Gamification
 ```bash
-# Configure environment
-cp .env.example .env
-# Edit .env with your API keys
+# Get user quests
+GET /rest/v1/user_quests?user_id=eq.{id}&select=*,quests(*)
 
-# Install all MCP servers
-./scripts/install-mcp-servers.sh
+# Get leaderboard
+GET /rest/v1/user_leaderboard?order=rank.asc&limit=100
 
-# Configure Claude Desktop
-./scripts/configure-claude.sh
-
-# Verify installation
-./scripts/health-check.sh
+# Get active quests
+GET /rest/v1/quests?is_active=eq.true&select=*
 ```
 
-### Step 3: Platform-Specific Guides
-
-- **📱 macOS**: [Complete macOS Setup Guide](docs/getting-started/setup-macos.md)
-- **🪟 Windows**: [Windows Setup Guide](docs/setup-guide.md) (Universal setup guide)
-- **🐧 Linux**: [Linux Setup Guide](docs/setup-guide.md) (Universal setup guide)
-
-### Step 4: Verify Installation
-
-1. **Launch Claude Desktop** and look for the MCP indicator (🔌)
-2. **Test MCP servers** with sample queries:
-   - Perplexity: "Search for the latest React 18 features"
-   - Manus: "Browse to github.com and show trending repositories"
-3. **Open VSCode** and verify GitHub Copilot is active
-4. **Run health check**: `./scripts/health-check.sh`
-
-🎉 **You're ready to start AI-assisted development!**
-
-## 📁 Repository Structure
-
-```
-synaptic/
-├── configs/                     # Configuration templates
-│   ├── claude-desktop/          # Claude Desktop configurations
-│   ├── vscode/                  # VSCode settings and extensions
-│   └── mcp-servers/             # Individual MCP server configs
-├── scripts/                     # Setup and installation scripts
-│   ├── interactive-setup.sh     # Guided setup wizard
-│   ├── install-*-mcp.sh        # Individual MCP server installers
-│   ├── health-check.sh         # System validation
-│   └── configure-claude.sh     # Claude Desktop configuration
-├── docs/                        # Comprehensive documentation
-│   ├── getting-started/         # Platform-specific setup guides
-│   │   └── setup-macos.md      # macOS installation guide
-│   ├── guides/                  # Usage and configuration guides
-│   │   └── troubleshooting.md  # Comprehensive troubleshooting
-│   ├── examples/                # Example workflows and configurations
-│   │   └── workflows/          # Step-by-step development workflows
-│   │       ├── frontend-development.md    # Frontend workflow
-│   │       └── backend-authentication.md  # Backend workflow
-│   ├── setup-guide.md          # Universal setup guide
-│   ├── troubleshooting.md      # Main troubleshooting guide
-│   └── best-practices.md       # Professional usage patterns
-├── copilot-instructions.md      # AI agent guardrails and standards
-├── .env.example                 # Environment variables template
-└── README.md                    # This file
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-Copy `.env.example` to `.env` and configure:
-
+#### AI Analysis
 ```bash
-# Perplexity API
-PERPLEXITY_API_KEY=your_perplexity_api_key_here
-
-# Optional: Manus Configuration
-MANUS_SANDBOX_DIR=~/manus-sandbox
-MANUS_GLOBAL_TIMEOUT=60
-
-# Optional: Figma Configuration
-FIGMA_ACCESS_TOKEN=your_figma_token_here
+# Analyze report
+POST /functions/v1/analyze-report
+{
+  "reportId": "uuid",
+  "title": "Report title",
+  "description": "Report description",
+  "category": "parks_green_areas"
+}
 ```
 
-### Claude Desktop Setup
+See [complete API documentation](docs/api.md) for all endpoints.
 
-The setup script automatically configures Claude Desktop with all MCP servers. Manual configuration details are available in the setup guide.
+## 🗄️ Database Schema
 
-### VSCode Configuration
+### Core Tables
+- **`civisto.users`** - User profiles and gamification data
+- **`civisto.reports`** - Citizen reports with geospatial data
+- **`civisto.quests`** - Gamification challenges
+- **`civisto.user_quests`** - User progress tracking
+- **`civisto.badges`** - Achievement system
+- **`civisto.report_comments`** - Community engagement
+- **`civisto.report_reactions`** - Social interactions
 
-Recommended extensions and settings are automatically applied. See `configs/vscode/` for details.
+### Key Features
+- **PostGIS integration** for geospatial queries
+- **Row Level Security** policies
+- **Automatic triggers** for gamification
+- **AI analysis** stored as JSONB
+- **Real-time subscriptions** enabled
 
-## 📚 Documentation
+## 🎮 Gamification System
 
-### 🚀 Getting Started
-- [**macOS Setup Guide**](docs/getting-started/setup-macos.md) - Complete macOS installation
-- [**Universal Setup Guide**](docs/setup-guide.md) - Windows and Linux instructions
-- [**Troubleshooting Guide**](docs/troubleshooting.md) - Common issues and solutions
+### Quest Types
+- **Daily**: "Submit 1 report today" (+50 points)
+- **Weekly**: "Submit 3 reports this week" (+200 points)  
+- **Milestone**: "Submit 10 total reports" (+500 points + badge)
+- **Category**: "5 park reports" (+300 points + "Park Guardian" badge)
 
-### 📖 Usage Guides
-- [**Comprehensive Troubleshooting**](docs/guides/troubleshooting.md) - Solve common issues
-- [**Team Customization Guide**](TEMPLATE_CUSTOMIZATION.md) - Adapt for your team
-- [**Best Practices**](docs/best-practices.md) - Professional usage patterns
+### Badge System
+- 🥇 **First Report** - Submit your first report
+- 🏆 **Reporter Pro** - Submit 10 reports
+- 🦸 **Community Hero** - Submit 50 reports
+- 🌳 **Park Guardian** - 5 park-related reports
+- 🛡️ **Safety Champion** - 10 safety reports
+- 🔒 **Digital Defender** - 5 digital harassment reports
 
-### 💡 Example Workflows
-- [**Frontend Development**](docs/examples/workflows/frontend-development.md) - React dashboard with AI
-- [**Backend Authentication**](docs/examples/workflows/backend-authentication.md) - Secure auth system
+### Level Progression
+- **Levels 1-5**: 100 points per level
+- **Levels 6+**: 200 points per level
+- **Automatic calculation** via database functions
 
-### 🤖 AI Guidelines
-- [**AI Agent Instructions**](copilot-instructions.md) - Guardrails and standards for AI-generated code
+## 🤖 AI Features
 
-## 🔒 Security
+### Report Analysis
+Automatic analysis includes:
+- **Category classification** (13 predefined categories)
+- **Priority assessment** (low, medium, high, critical)
+- **Sentiment scoring** (0.0 to 1.0)
+- **Keyword extraction** for searchability
+- **Municipality suggestions** for action items
 
-- API keys are managed through environment variables
-- Configuration files use placeholders for sensitive data
-- Setup scripts include security validation
-- See [Best Practices Guide](docs/best-practices.md) for complete details
-
-## 🎯 Usage Examples
-
-### Basic Research Workflow
+### Implementation
+```typescript
+interface AIAnalysisResult {
+  has_people: boolean
+  damage_detected: boolean
+  suggested_priority: 'low' | 'medium' | 'high' | 'critical'
+  sentiment_score: number
+  keywords: string[]
+  municipality_suggestions: string[]
+}
 ```
-Ask Claude: "Search for the latest React 18 performance optimizations"
-→ Perplexity MCP provides current research
-→ Manus MCP can test code examples
-→ Results integrated in development context
+
+## 🏛️ Municipal Integration
+
+### Supported Municipalities
+- **Stockholm** (0180) - Email + API + Webhook
+- **Göteborg** (1480) - Email + Webhook  
+- **Malmö** (1280) - Email only
+
+### Notification Methods
+- **Email**: Formatted HTML notifications
+- **API**: Direct system integration
+- **Webhook**: Real-time updates with HMAC signatures
+
+### Adding New Municipalities
+```typescript
+const municipalities = {
+  'your_code': {
+    name: 'Municipality Name',
+    email: 'reports@municipality.se',
+    api_endpoint: 'https://api.municipality.se/reports',
+    notification_preferences: {
+      email: true,
+      api: true,
+      webhook: false
+    }
+  }
+}
 ```
 
-### Design-to-Code Workflow
-```
-1. Select Figma component
-2. Ask Claude: "Implement this design with Tailwind CSS"
-3. Figma MCP extracts design specifications
-4. Claude generates pixel-perfect code
-```
+## 🧪 Sample Data
 
-## 🛠️ Customization
+The database includes comprehensive sample data:
+- **4 test users** with different levels and badges
+- **5 sample reports** across various categories
+- **Comments and reactions** for community engagement
+- **Quest progress** examples
+- **Notification logs** for testing
 
-### Adding New MCP Servers
+Test the system immediately after setup!
 
-1. Create configuration in `configs/mcp-servers/new-server/`
-2. Add installation script in `scripts/install-new-server.sh`
-3. Update Claude Desktop configuration
-4. Document in the main README.md
+## 🚀 Deployment
 
-### Team Deployment
+### Production Deployment
+1. Create Supabase project
+2. Configure environment variables
+3. Deploy schema: `supabase db push`
+4. Deploy functions: `supabase functions deploy`
+5. Configure authentication providers
+6. Set up custom domain (optional)
 
-- Use `scripts/team-setup.sh` for standardized team configurations
-- Customize `configs/` for organizational requirements
-- Implement CI/CD with `scripts/validate-config.sh`
+See [deployment guide](docs/deployment.md) for detailed instructions.
 
-## 📊 Performance Optimization
-
-- **Resource Management**: Monitor CPU/RAM usage with included scripts
-- **Server Selection**: Enable/disable MCP servers based on project needs
-- **Network Optimization**: Configure for corporate environments
+### CI/CD
+GitHub Actions automatically:
+- Runs tests on pull requests
+- Deploys to staging on `develop` branch
+- Deploys to production on `main` branch
+- Performs security scans
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Test with `scripts/validate-setup.sh`
-4. Submit a pull request
+We welcome contributions from developers, designers, and civic enthusiasts!
+
+### Ways to Contribute
+- 🐛 **Bug Reports**: Help us identify and fix issues
+- 💡 **Feature Ideas**: Suggest new civic engagement features
+- 🔧 **Code Contributions**: Implement backend functionality
+- 📚 **Documentation**: Improve guides and API docs
+- 🌍 **Translation**: Make Civisto accessible globally
+- 🏛️ **Municipal Integration**: Add support for new cities
+
+### Getting Started
+1. Read our [Contributing Guide](CONTRIBUTING.md)
+2. Check out [Good First Issues](https://github.com/johanlido/civisto/labels/good%20first%20issue)
+3. Join our [Discord Community](https://discord.gg/civisto)
+4. Follow our [Code of Conduct](CODE_OF_CONDUCT.md)
+
+## 🏆 Community
+
+### Recognition Programs
+- 🥇 **Civisto Champions**: Top contributors get special recognition
+- 🎯 **First Contribution**: Celebrate your first PR
+- 📈 **Monthly MVPs**: Outstanding community members
+- 🌟 **Impact Awards**: Real-world change makers
+
+### Connect With Us
+- 💬 [Discord Community](https://discord.gg/civisto)
+- 🐦 [Twitter](https://twitter.com/civisto)
+- 💼 [LinkedIn](https://linkedin.com/company/civisto)
+- 📧 [Email](mailto:hello@civisto.com)
+
+## 📊 Impact Goals
+
+*Building towards a more engaged society:*
+
+- **🎯 Goal**: 10,000+ active community reporters
+- **🏛️ Target**: Integration with 50+ Swedish municipalities  
+- **🌍 Vision**: Expand to Nordic countries and beyond
+- **💪 Mission**: Transform 1 million citizens into community heroes
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## 🙏 Acknowledgments
 
-- [Troubleshooting Guide](docs/troubleshooting.md)
-- [GitHub Issues](https://github.com/johanlido/Synaptic/issues)
-- [Documentation](docs/)
-
-## 🔗 Related Resources
-
-- [VSCode GitHub Copilot Documentation](https://code.visualstudio.com/docs/copilot/setup)
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/)
-- [Claude Desktop MCP Guide](https://support.anthropic.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop)
+- **Community Contributors**: Every bug report, feature request, and PR makes Civisto better
+- **Municipal Partners**: Forward-thinking local governments embracing citizen engagement
+- **Open Source Community**: Built on amazing open source projects
+- **Civic Tech Movement**: Inspired by global efforts to improve democracy through technology
 
 ---
 
-**Built for professional AI-assisted development workflows**
+**🎯 Ready to build the future of civic engagement?** [Get started now](docs/getting-started.md) or [join our community](https://discord.gg/civisto)!
 
-*synaptic implements the setup described in the "Professional AI Development Environment Setup Guide" blog post series.*
+*Civisto Backend - Where every API call empowers a community hero.* ✨
 

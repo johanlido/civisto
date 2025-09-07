@@ -1,0 +1,79 @@
+{
+  "name": "civisto-backend",
+  "version": "1.0.0",
+  "description": "Civisto Backend - AI-Driven Civic Intelligence Platform API",
+  "private": true,
+  "scripts": {
+    "dev": "cd backend && supabase start",
+    "build": "cd backend && supabase functions build",
+    "test": "cd backend && npm test",
+    "lint": "cd backend && npm run lint",
+    "db:reset": "cd backend && supabase db reset",
+    "db:migrate": "cd backend && supabase migration up",
+    "db:seed": "cd backend && supabase seed run",
+    "functions:serve": "cd backend && supabase functions serve",
+    "functions:deploy": "cd backend && supabase functions deploy",
+    "deploy": "cd backend && supabase db push && supabase functions deploy",
+    "setup": "npm install && cd backend && npm install",
+    "start": "cd backend && supabase start"
+  },
+  "keywords": [
+    "civic-tech",
+    "ai",
+    "community",
+    "reporting",
+    "gamification",
+    "open-source",
+    "supabase",
+    "backend",
+    "api",
+    "postgresql"
+  ],
+  "author": {
+    "name": "Civisto Team",
+    "email": "hello@civisto.com",
+    "url": "https://civisto.com"
+  },
+  "contributors": [
+    {
+      "name": "Johan",
+      "email": "johan@civisto.com",
+      "role": "Co-Founder & CEO"
+    },
+    {
+      "name": "Daniel", 
+      "email": "daniel@civisto.com",
+      "role": "Co-Founder & CTO"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johanlido/civisto.git"
+  },
+  "bugs": {
+    "url": "https://github.com/johanlido/civisto/issues"
+  },
+  "homepage": "https://civisto.com",
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md,sql}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
+
